@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Cache;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\DashboardController;
@@ -44,9 +46,52 @@ use App\Http\Controllers\Api\WhatsAppAccountController;
 |
 */
 
-// Public routes
+// Public routes & Health Check
 Route::get('/', function () {
-    return response()->json(['message' => 'Backend is running 🚀']);
+    return response()->json([
+        'service' => 'ZapReach API',
+        'version' => '1.0.0',
+        'status'  => 'active',
+        'documentation' => url('/api-docs'),
+    ]);
+});
+
+Route::get('/health', function () {
+    $dbStatus = 'ok';
+    $dbError = null;
+    try {
+        DB::connection()->getPdo();
+    } catch (\Throwable $e) {
+        $dbStatus = 'disconnected';
+        $dbError = $e->getMessage();
+    }
+
+    $cacheStatus = 'ok';
+    try {
+        Cache::put('zapreach_health_probe', true, 10);
+        $cacheStatus = Cache::get('zapreach_health_probe') ? 'ok' : 'degraded';
+    } catch (\Throwable $e) {
+        $cacheStatus = 'degraded';
+    }
+
+    $healthy = ($dbStatus === 'ok');
+
+    return response()->json([
+        'status' => $healthy ? 'healthy' : 'unhealthy',
+        'app' => config('app.name', 'ZapReach'),
+        'environment' => app()->environment(),
+        'timestamp' => now()->toIso8601String(),
+        'checks' => [
+            'database' => [
+                'status' => $dbStatus,
+                'details' => $dbError ? 'Connection failed' : 'Connected',
+            ],
+            'cache' => [
+                'status' => $cacheStatus,
+            ],
+        ],
+        'php_version' => PHP_VERSION,
+    ], $healthy ? 200 : 503);
 });
 
 // Legal & Compliance APIs (Privacy Policy, Terms & Conditions, Delete Account)

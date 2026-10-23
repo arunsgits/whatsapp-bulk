@@ -1,0 +1,39 @@
+<svg width="240" height="56" viewBox="0 0 240 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logo_bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f291e"/>
+      <stop offset="100%" stop-color="#061610"/>
+    </linearGradient>
+    <linearGradient id="logo_bolt" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="logo_wave" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="text_reach" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+    <filter id="logo_glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Icon Emblem (44x44) -->
+  <g transform="translate(4, 6)">
+    <rect x="0" y="0" width="44" height="44" rx="12" fill="url(#logo_bg)" stroke="#10b981" stroke-width="1.2" stroke-opacity="0.5"/>
+    <path d="M31 14C35 16.5 37.5 19.5 37.5 22C37.5 24.5 35 27.5 31 30" stroke="url(#logo_wave)" stroke-width="2" stroke-linecap="round" stroke-opacity="0.8"/>
+    <path d="M28 17C30.5 18.8 32 20.5 32 22C32 23.5 30.5 25.2 28 27" stroke="url(#logo_wave)" stroke-width="2" stroke-linecap="round" stroke-opacity="0.95"/>
+    <path d="M22 7L11 23H20L18 37L31 19H21L22 7Z" fill="url(#logo_bolt)" filter="url(#logo_glow)"/>
+  </g>
+
+  <!-- Brand Typography -->
+  <!-- "Zap" in crisp white -->
+  <text x="58" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-size="24" font-weight="800" fill="#ffffff" letter-spacing="-0.5px">Zap<tspan fill="url(#text_reach)">Reach</tspan></text>
+  
+  <!-- Subtitle Tagline -->
+  <text x="59" y="44" font-family="'Inter', sans-serif" font-size="8.5" font-weight="700" fill="#64748b" letter-spacing="1.5px">WHATSAPP CLOUD CRM</text>
+</svg>

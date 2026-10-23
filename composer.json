@@ -1,9 +1,9 @@
 {
-    "name": "laravel/laravel",
+    "name": "zapreach/api",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
-    "license": "MIT",
+    "description": "ZapReach - WhatsApp Bulk Messaging, Auto-AI Automation & Commerce API Platform.",
+    "keywords": ["zapreach", "whatsapp", "cloud-api", "bulk-messaging", "crm", "auto-ai", "laravel"],
+    "license": "proprietary",
     "require": {
         "php": "^8.2",
         "barryvdh/laravel-dompdf": "*",

@@ -138,6 +138,30 @@ class User extends Authenticatable
     }
 
     /**
+     * Get settings / Meta WABA & AI config for this user.
+     */
+    public function settings()
+    {
+        return $this->hasOne(Settings::class, 'userId');
+    }
+
+    /**
+     * Get wallet transactions for this user.
+     */
+    public function walletTransactions()
+    {
+        return $this->hasMany(WalletTransaction::class, 'userId')->latest('id');
+    }
+
+    /**
+     * Get wallet recharge orders for this user.
+     */
+    public function walletOrders()
+    {
+        return $this->hasMany(WalletOrder::class, 'userId')->latest('id');
+    }
+
+    /**
      * Get the profile image URL with domain from APP_URL
      */
     public function getProfileImageUrlAttribute()

@@ -16,9 +16,9 @@ use App\Http\Controllers\Api\InvoiceController;
 |
 */
 
-// Home
+// Home - Redirect to Interactive API Documentation
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/api-docs');
 });
 
 // API Documentation
@@ -79,3 +79,4 @@ Route::get('/r/{user_id?}', function ($user_id = null) {
     $number = preg_replace('/\D+/', '', (string) $number) ?: '0';
     return redirect()->away('https://wa.me/' . $number);
 });
+
